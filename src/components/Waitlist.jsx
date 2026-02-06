@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
-import { addToWaitlist } from '../lib/supabase';
+import { addToWaitlist, checkRateLimit } from '../lib/supabase';
 
 const Waitlist = () => {
     const [isVisible, setIsVisible] = useState(false);
     const [email, setEmail] = useState('');
+    const [honeypot, setHoneypot] = useState(''); // Hidden field for bot detection
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState('');
+    const [remainingAttempts, setRemainingAttempts] = useState(3);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const sectionRef = useRef(null);
 
@@ -40,22 +42,40 @@ const Waitlist = () => {
         };
     }, []);
 
+    // Check rate limit on mount
+    useEffect(() => {
+        const rateCheck = checkRateLimit();
+        setRemainingAttempts(rateCheck.remainingAttempts);
+    }, []);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!email) return;
 
+        // Check rate limit before submission
+        const rateCheck = checkRateLimit();
+        if (!rateCheck.allowed) {
+            setError(`Too many attempts. Please try again later.`);
+            return;
+        }
+
         setIsLoading(true);
         setError('');
 
-        const result = await addToWaitlist(email);
+        // Pass honeypot value to the function
+        const result = await addToWaitlist(email, honeypot);
 
         setIsLoading(false);
 
         if (result.success) {
             setIsSubmitted(true);
             setEmail('');
+            setHoneypot('');
         } else {
             setError(result.error || 'Something went wrong. Please try again.');
+            // Update remaining attempts
+            const newRateCheck = checkRateLimit();
+            setRemainingAttempts(newRateCheck.remainingAttempts);
         }
     };
 
@@ -132,6 +152,25 @@ const Waitlist = () => {
                 <div className={`max-w-xl mx-auto transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                     {!isSubmitted ? (
                         <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4">
+                            {/* Honeypot field - hidden from users, bots will fill this */}
+                            <input
+                                type="text"
+                                name="website"
+                                value={honeypot}
+                                onChange={(e) => setHoneypot(e.target.value)}
+                                style={{
+                                    position: 'absolute',
+                                    left: '-9999px',
+                                    opacity: 0,
+                                    height: 0,
+                                    width: 0,
+                                    tabIndex: -1
+                                }}
+                                tabIndex={-1}
+                                autoComplete="off"
+                                aria-hidden="true"
+                            />
+
                             <div className="flex-1 relative">
                                 <input
                                     type="email"

@@ -1,12 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 
+// Import images
+import EigerLogo from '../assets/EigerLogo.png';
+import MainMenuImg from '../assets/E_MainMenu2.PNG';
+import IntelImg from '../assets/E_intel2.PNG';
+import ClothesImg from '../assets/E_Clothes2.jpg';
+
 const features = [
     {
         stage: '01',
         title: 'Base Camp',
         subtitle: 'Your Command Center',
-        // Image placeholder - you'll replace this with actual app screenshot
-        imagePlaceholder: 'main-menu',
+        image: MainMenuImg,
         icon: (
             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -17,7 +22,7 @@ const features = [
         stage: '02',
         title: 'Summit Intel',
         subtitle: 'Peak & Trail Data',
-        imagePlaceholder: 'mountain-info',
+        image: IntelImg,
         icon: (
             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -28,7 +33,7 @@ const features = [
         stage: '03',
         title: 'Gear Vault',
         subtitle: 'Your Equipment Arsenal',
-        imagePlaceholder: 'gear-profile',
+        image: ClothesImg,
         icon: (
             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
@@ -94,29 +99,35 @@ const FeatureCard = ({ feature, index, mousePosition }) => {
                 </p>
             </div>
 
-            {/* Image Container - Phone Mockup Style */}
-            <div className="relative px-6 pb-6 flex justify-center">
-                <div className="relative bg-gradient-to-b from-white/[0.05] to-white/[0.02] rounded-2xl overflow-hidden border border-white/10 aspect-[9/16] w-full max-w-[280px]">
-                    {/* Phone Frame Effect */}
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-black/50 rounded-b-xl z-10" />
+            {/* iPhone Frame Container */}
+            <div className="relative px-4 pb-6 flex justify-center">
+                {/* iPhone Device Frame */}
+                <div className="relative">
+                    {/* Outer iPhone Frame */}
+                    <div className="relative bg-[#1a1a1a] rounded-[3rem] p-2 shadow-2xl shadow-black/50">
+                        {/* Inner Screen Bezel */}
+                        <div className="relative bg-black rounded-[2.5rem] overflow-hidden" style={{ width: '350px', height: '720px' }}>
 
-                    {/* Image Placeholder - Centered */}
-                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#1a1a1a] to-[#0d0d0d]">
-                        <div className="text-center p-4">
-                            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-white/10 flex items-center justify-center">
-                                {feature.icon}
-                            </div>
-                            <p className="text-white/30 text-sm">
-                                {feature.imagePlaceholder}.png
-                            </p>
-                            <p className="text-white/20 text-xs mt-2">
-                                Add your app screenshot here
-                            </p>
+                            {/* App Screenshot */}
+                            <img
+                                src={feature.image}
+                                alt={feature.title}
+                                className="absolute inset-0 w-full h-full object-cover object-top"
+                                style={{ imageRendering: 'auto' }}
+                            />
+
+                            {/* Screen Glare Effect */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-transparent opacity-30 pointer-events-none" />
+
+                            {/* Hover Glare */}
+                            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                         </div>
                     </div>
 
-                    {/* Glare Effect on Hover */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                    {/* Side Button */}
+                    <div className="absolute right-[-3px] top-28 w-1 h-12 bg-[#2a2a2a] rounded-r-sm" />
+                    <div className="absolute left-[-3px] top-24 w-1 h-8 bg-[#2a2a2a] rounded-l-sm" />
+                    <div className="absolute left-[-3px] top-36 w-1 h-16 bg-[#2a2a2a] rounded-l-sm" />
                 </div>
             </div>
 
@@ -189,6 +200,7 @@ const Features = () => {
                     <span className="inline-block px-4 py-2 rounded-full border border-white/10 text-xs tracking-[0.3em] uppercase text-white/50 mb-8">
                         App Preview
                     </span>
+                    {/* Title */}
                     <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 text-white">
                         Your Trail{' '}
                         <span className="bg-gradient-to-r from-white to-white/50 bg-clip-text text-transparent">Companion</span>

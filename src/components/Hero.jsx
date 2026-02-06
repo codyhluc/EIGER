@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import EigerLogo from '../assets/EigerLogo.png';
 
 const Hero = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -104,10 +105,12 @@ const Hero = () => {
                         </span>
                     </div>
 
-                    {/* Main Title */}
-                    <h1 className="text-8xl sm:text-9xl md:text-[12rem] font-black tracking-tighter mb-6 text-white drop-shadow-2xl">
-                        EIGER<sup className="text-3xl sm:text-4xl md:text-5xl align-super text-white">™</sup>
-                    </h1>
+                    {/* Main Title - Logo */}
+                    <img
+                        src={EigerLogo}
+                        alt="EIGER"
+                        className="h-64 sm:h-80 md:h-[26rem] mx-auto mb-6 object-contain drop-shadow-2xl"
+                    />
 
                     {/* Tagline with personality */}
                     <p className="text-xl md:text-2xl lg:text-3xl text-white/80 font-light max-w-3xl mx-auto leading-relaxed mb-4">
@@ -131,7 +134,7 @@ const Hero = () => {
                 </div>
 
                 {/* Scroll Indicator */}
-                <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce">
                     <div className="flex flex-col items-center gap-3 text-white/50">
                         <span className="text-xs tracking-widest uppercase">Explore</span>
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
