@@ -115,7 +115,7 @@ const Hero = () => {
                     </p>
 
                     <p className="text-lg md:text-xl text-white/60 font-light max-w-2xl mx-auto italic">
-                        The summit waits for no one - but you'll be ready.
+                        The summit waits for no one - but you'll be ready
                     </p>
 
                     {/* CTA Button */}

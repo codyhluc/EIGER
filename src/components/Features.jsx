@@ -3,31 +3,35 @@ import { useEffect, useRef, useState } from 'react';
 const features = [
     {
         stage: '01',
-        title: 'Discover',
-        description: 'Find your next adventure. We\'ve curated the best peaks, trails, and resorts — so you can spend less time planning and more time packing.',
+        title: 'Base Camp',
+        subtitle: 'Your Command Center',
+        // Image placeholder - you'll replace this with actual app screenshot
+        imagePlaceholder: 'main-menu',
         icon: (
-            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
             </svg>
         ),
     },
     {
         stage: '02',
-        title: 'Prepare',
-        description: 'No more second-guessing your gear list. We analyze weather, altitude, and trail conditions to tell you exactly what to wear and bring.',
+        title: 'Summit Intel',
+        subtitle: 'Peak & Trail Data',
+        imagePlaceholder: 'mountain-info',
         icon: (
-            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
         ),
     },
     {
         stage: '03',
-        title: 'Conquer',
-        description: 'Real-time updates when conditions change. Because the mountain doesn\'t care about your plans — but we\'ll help you adapt.',
+        title: 'Gear Vault',
+        subtitle: 'Your Equipment Arsenal',
+        imagePlaceholder: 'gear-profile',
         icon: (
-            <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
             </svg>
         ),
     },
@@ -55,46 +59,71 @@ const FeatureCard = ({ feature, index, mousePosition }) => {
     }, [index]);
 
     // Subtle card tilt based on mouse position
-    const tiltX = mousePosition.y * 5;
-    const tiltY = mousePosition.x * -5;
+    const tiltX = mousePosition.y * 3;
+    const tiltY = mousePosition.x * -3;
 
     return (
         <div
             ref={cardRef}
-            className={`group relative p-10 rounded-3xl bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/10 
+            className={`group relative rounded-3xl bg-gradient-to-br from-white/[0.08] to-white/[0.02] border border-white/10 
         hover:border-white/20 hover:from-white/[0.12] hover:to-white/[0.04] 
-        transition-all duration-700 ease-out cursor-pointer
+        transition-all duration-700 ease-out overflow-hidden
         ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-16'}`}
             style={{
                 transform: isVisible ? `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)` : 'translateY(64px)',
             }}
         >
-            {/* Stage Number */}
-            <div className="absolute -top-5 left-8">
-                <span className="inline-flex items-center justify-center w-10 h-10 bg-white text-black text-sm font-bold rounded-full shadow-lg">
-                    {feature.stage}
-                </span>
+            {/* Header Section */}
+            <div className="p-6 pb-4">
+                {/* Stage Badge & Icon Row - Left and Right */}
+                <div className="flex items-center justify-between mb-4">
+                    <span className="inline-flex items-center justify-center w-10 h-10 bg-white text-black text-sm font-bold rounded-full shadow-lg">
+                        {feature.stage}
+                    </span>
+                    <div className="text-white/40 group-hover:text-white/70 transition-colors duration-300">
+                        {feature.icon}
+                    </div>
+                </div>
+
+                {/* Title - Centered */}
+                <h3 className="text-2xl font-bold text-white group-hover:text-white transition-colors text-center">
+                    {feature.title}
+                </h3>
+                <p className="text-sm text-white/40 mt-1 tracking-wide uppercase text-center">
+                    {feature.subtitle}
+                </p>
             </div>
 
-            {/* Icon */}
-            <div className="mb-8 text-white/60 group-hover:text-white group-hover:scale-110 transition-all duration-500">
-                {feature.icon}
+            {/* Image Container - Phone Mockup Style */}
+            <div className="relative px-6 pb-6 flex justify-center">
+                <div className="relative bg-gradient-to-b from-white/[0.05] to-white/[0.02] rounded-2xl overflow-hidden border border-white/10 aspect-[9/16] w-full max-w-[280px]">
+                    {/* Phone Frame Effect */}
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-black/50 rounded-b-xl z-10" />
+
+                    {/* Image Placeholder - Centered */}
+                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#1a1a1a] to-[#0d0d0d]">
+                        <div className="text-center p-4">
+                            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-white/10 flex items-center justify-center">
+                                {feature.icon}
+                            </div>
+                            <p className="text-white/30 text-sm">
+                                {feature.imagePlaceholder}.png
+                            </p>
+                            <p className="text-white/20 text-xs mt-2">
+                                Add your app screenshot here
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Glare Effect on Hover */}
+                    <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                </div>
             </div>
-
-            {/* Title */}
-            <h3 className="text-3xl font-bold mb-4 text-white group-hover:text-white transition-colors">
-                {feature.title}
-            </h3>
-
-            {/* Description */}
-            <p className="text-lg text-white/50 leading-relaxed group-hover:text-white/70 transition-colors duration-300">
-                {feature.description}
-            </p>
 
             {/* Hover Glow Effect */}
             <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                 style={{
-                    background: 'radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.06), transparent 40%)'
+                    background: 'radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.04), transparent 40%)'
                 }}
             />
         </div>
@@ -156,16 +185,16 @@ const Features = () => {
 
             <div className="relative max-w-7xl mx-auto">
                 {/* Section Header */}
-                <div className={`text-center mb-24 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+                <div className={`text-center mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                     <span className="inline-block px-4 py-2 rounded-full border border-white/10 text-xs tracking-[0.3em] uppercase text-white/50 mb-8">
-                        How It Works
+                        App Preview
                     </span>
                     <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-8 text-white">
-                        The Journey to the{' '}
-                        <span className="bg-gradient-to-r from-white to-white/50 bg-clip-text text-transparent">Summit</span>
+                        Your Trail{' '}
+                        <span className="bg-gradient-to-r from-white to-white/50 bg-clip-text text-transparent">Companion</span>
                     </h2>
                     <p className="text-xl md:text-2xl text-white/40 max-w-2xl mx-auto leading-relaxed">
-                        Less prep stress, more trail time.
+                        Everything you need, right in your pocket.
                     </p>
                 </div>
 
@@ -176,10 +205,10 @@ const Features = () => {
                     ))}
                 </div>
 
-                {/* Human touch - testimonial style */}
-                <div className={`text-center mt-20 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-                    <p className="text-white/30 text-lg italic max-w-xl mx-auto">
-                        "We've spent hundreds of hours on trails, and too many of them figuring out what to wear. Now we just check the app."
+                {/* Bottom tagline */}
+                <div className={`text-center mt-16 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
+                    <p className="text-white/30 text-lg max-w-xl mx-auto">
+                        "We built this because we spent way too many hours researching gear, weather, and trail conditions before every trip. Now it's all in one place."
                     </p>
                 </div>
             </div>

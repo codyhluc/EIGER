@@ -119,13 +119,13 @@ const Waitlist = () => {
 
                 {/* Subheadline - More human, conversational */}
                 <p className="text-xl md:text-2xl text-white/40 mb-6 max-w-2xl mx-auto leading-relaxed">
-                    Waitlist now — be among the first to experience intelligent mountain preparation.
+                    Waitlist now! Be among the first to experience intelligent outdoor preparation.
                 </p>
 
                 {/* Personal touch - human element */}
                 <p className="text-base text-white/30 mb-14 max-w-xl mx-auto italic">
-                    "We built this because we spent way too many hours researching gear, weather, and trail conditions before every trip. Now it's all in one place."
-                    <span className="block mt-2 text-white/20 not-italic text-sm">— The EIGER Team</span>
+                    "There is no better life purpose than to perish in attempting the great and the impossible"
+                    <span className="block mt-2 text-white/20 not-italic text-sm">- The EIGER Team</span>
                 </p>
 
                 {/* Waitlist Form */}
