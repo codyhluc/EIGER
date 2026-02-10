@@ -145,7 +145,7 @@ const Waitlist = () => {
                 {/* Personal touch - human element */}
                 <p className="text-base text-white/30 mb-14 max-w-xl mx-auto italic">
                     "There is no better life purpose than to perish in attempting the great and the impossible"
-                    <span className="block mt-2 text-white/20 not-italic text-sm">- The EIGER Team</span>
+                    <span className="block mt-2 text-white/20 not-italic text-sm">- Friedrich Nietzsche</span>
                 </p>
 
                 {/* Waitlist Form */}
@@ -224,17 +224,13 @@ const Waitlist = () => {
                     We respect your privacy. No spam, ever. Just good vibes and launch updates.
                 </p>
 
-                {/* Stats - More authentic feel */}
+                {/* Stats */}
                 <div className="mt-24 pt-16 border-t border-white/5">
-                    <div className="flex flex-wrap items-center justify-center gap-12 md:gap-20 text-white/40">
+                    <div className="flex flex-wrap items-center justify-center gap-16 md:gap-24 text-white/40">
                         <div className="text-center">
-                            <p className="text-4xl md:text-5xl font-bold text-white mb-2">500+</p>
-                            <p className="text-sm uppercase tracking-widest">Fellow Adventurers</p>
-                        </div>
-                        <div className="hidden sm:block w-px h-16 bg-white/10" />
-                        <div className="text-center">
-                            <p className="text-4xl md:text-5xl font-bold text-white mb-2">50+</p>
+                            <p className="text-4xl md:text-5xl font-bold text-white mb-2">10+</p>
                             <p className="text-sm uppercase tracking-widest">Peaks Mapped</p>
+                            <p className="text-xs text-white/30 mt-1">Continuing to map more</p>
                         </div>
                         <div className="hidden sm:block w-px h-16 bg-white/10" />
                         <div className="text-center">
