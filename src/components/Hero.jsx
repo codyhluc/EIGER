@@ -95,47 +95,51 @@ const Hero = () => {
             </div>
 
             {/* Content Overlay */}
-            <div className="relative z-10 h-full flex flex-col items-center justify-center px-6 text-center">
-                <div className={`transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <div className="relative z-10 h-full flex flex-col items-center px-6 text-center">
+                {/* Main content - flex-1 centers and shrinks dynamically */}
+                <div className="flex-1 flex flex-col items-center justify-center min-h-0">
+                    <div className={`transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
 
-                    {/* Pre-title Badge */}
-                    <div className="mb-8">
-                        <span className="inline-block px-4 py-2 rounded-full border border-white/20 text-xs tracking-[0.3em] uppercase text-white/70 backdrop-blur-sm bg-white/5">
-                            Alpine Precision
-                        </span>
+                        {/* Pre-title Badge */}
+                        <div className="mb-4 md:mb-8">
+                            <span className="inline-block px-4 py-2 rounded-full border border-white/20 text-xs tracking-[0.3em] uppercase text-white/70 backdrop-blur-sm bg-white/5">
+                                Alpine Precision
+                            </span>
+                        </div>
+
+                        {/* Main Title - Logo - dynamically sized */}
+                        <img
+                            src={EigerLogo}
+                            alt="EIGER"
+                            className="mx-auto mb-4 md:mb-6 object-contain drop-shadow-2xl"
+                            style={{ height: 'clamp(14rem, 40vh, 30rem)' }}
+                        />
+
+                        {/* Tagline with personality */}
+                        <p className="text-lg md:text-2xl lg:text-3xl text-white/80 font-light max-w-3xl mx-auto leading-relaxed mb-2 md:mb-4">
+                            Your mountain. Your gear. One app.
+                        </p>
+
+                        <p className="text-base md:text-xl text-white/60 font-light max-w-2xl mx-auto italic">
+                            The summit waits for no one - but you'll be ready
+                        </p>
+
+                        {/* CTA Button */}
+                        <div className="mt-6 md:mt-12">
+                            <a
+                                href="#waitlist"
+                                className="inline-block px-10 py-4 bg-white text-black font-semibold text-lg rounded-full hover:bg-white/90 hover:scale-105 transition-all duration-300 shadow-2xl"
+                            >
+                                Join the Waitlist
+                            </a>
+                        </div>
+
                     </div>
-
-                    {/* Main Title - Logo */}
-                    <img
-                        src={EigerLogo}
-                        alt="EIGER"
-                        className="h-64 sm:h-80 md:h-[26rem] mx-auto mb-6 object-contain drop-shadow-2xl"
-                    />
-
-                    {/* Tagline with personality */}
-                    <p className="text-xl md:text-2xl lg:text-3xl text-white/80 font-light max-w-3xl mx-auto leading-relaxed mb-4">
-                        Your mountain. Your gear. One app.
-                    </p>
-
-                    <p className="text-lg md:text-xl text-white/60 font-light max-w-2xl mx-auto italic">
-                        The summit waits for no one - but you'll be ready
-                    </p>
-
-                    {/* CTA Button */}
-                    <div className="mt-12">
-                        <a
-                            href="#waitlist"
-                            className="inline-block px-10 py-4 bg-white text-black font-semibold text-lg rounded-full hover:bg-white/90 hover:scale-105 transition-all duration-300 shadow-2xl"
-                        >
-                            Join the Waitlist
-                        </a>
-                    </div>
-
                 </div>
 
-                {/* Scroll Indicator */}
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce">
-                    <div className="flex flex-col items-center gap-3 text-white/50">
+                {/* Scroll Indicator - always visible, in-flow at bottom */}
+                <div className="pb-6 pt-4 animate-bounce shrink-0">
+                    <div className="flex flex-col items-center gap-2 text-white/50">
                         <span className="text-xs tracking-widest uppercase">Explore</span>
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
