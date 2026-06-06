@@ -7,7 +7,9 @@ const Hero = () => {
     const heroRef = useRef(null);
 
     useEffect(() => {
-        setIsVisible(true);
+        const reveal = window.requestAnimationFrame(() => {
+            setIsVisible(true);
+        });
 
         const handleMouseMove = (e) => {
             if (heroRef.current) {
@@ -19,7 +21,10 @@ const Hero = () => {
         };
 
         window.addEventListener('mousemove', handleMouseMove);
-        return () => window.removeEventListener('mousemove', handleMouseMove);
+        return () => {
+            window.cancelAnimationFrame(reveal);
+            window.removeEventListener('mousemove', handleMouseMove);
+        };
     }, []);
 
     return (
