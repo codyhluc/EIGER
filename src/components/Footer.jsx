@@ -32,6 +32,13 @@ const Footer = () => {
                     </div>
 
                 </div>
+
+                {/* Legal */}
+                <div className="mt-10 flex items-center justify-center gap-4 text-sm">
+                    <a href="/privacy.html" className="text-white/30 hover:text-white/60 transition-colors duration-300">Privacy Policy</a>
+                    <span className="text-white/20">&middot;</span>
+                    <a href="/terms.html" className="text-white/30 hover:text-white/60 transition-colors duration-300">Terms of Use</a>
+                </div>
             </div>
         </footer>
     );
