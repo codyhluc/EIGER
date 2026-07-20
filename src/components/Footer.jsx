@@ -38,6 +38,8 @@ const Footer = () => {
                     <a href="/privacy.html" className="text-white/30 hover:text-white/60 transition-colors duration-300">Privacy Policy</a>
                     <span className="text-white/20">&middot;</span>
                     <a href="/terms.html" className="text-white/30 hover:text-white/60 transition-colors duration-300">Terms of Use</a>
+                    <span className="text-white/20">&middot;</span>
+                    <a href="/delete-account.html" className="text-white/30 hover:text-white/60 transition-colors duration-300">Delete Account</a>
                 </div>
             </div>
         </footer>
