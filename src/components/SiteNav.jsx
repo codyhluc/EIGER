@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import EigerLogo from '../assets/EigerLogo.png';
 
 const scrollToWaitlist = () => {
   const section = document.getElementById('waitlist');
@@ -31,9 +30,13 @@ const SiteNav = () => {
           : 'border-b border-transparent bg-transparent'
       }`}
     >
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
-        <Link to="/" className="transition-opacity duration-300 hover:opacity-80" aria-label="EIGER home">
-          <img src={EigerLogo} alt="EIGER" className="h-9 w-auto object-contain" />
+      <nav className="flex items-center justify-between px-4 py-4 sm:px-6">
+        <Link
+          to="/"
+          aria-label="EIGER home"
+          className="rounded-full border border-white/20 px-5 py-2 text-sm font-bold uppercase tracking-[0.3em] text-white transition-all duration-300 hover:border-white/40 hover:bg-white/10"
+        >
+          EIGER
         </Link>
 
         <div className="flex items-center gap-6 sm:gap-8">
